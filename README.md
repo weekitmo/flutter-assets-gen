@@ -1,3 +1,7 @@
+## 命令
+- F1 > search flutter asset
+![screenshot](./images/screenshot.png)
+
 ## 如何使用
 
 
