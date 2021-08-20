@@ -15,7 +15,7 @@
     "watch"
   ],
   "publisher": "weekit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.59.0"
   },
@@ -96,8 +96,8 @@
   },
   "dependencies": {
     "chokidar": "^3.5.2",
+    "glob": "^7.1.7",
     "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21",
-    "glob": "^7.1.7"
+    "lodash": "^4.17.21"
   }
 }
