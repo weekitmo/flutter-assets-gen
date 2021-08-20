@@ -28,6 +28,10 @@
     ]
   },
   "scripts": {
+    "commit": "git-cz",
+    "version": "auto-changelog -p && git add CHANGELOG.md",
+    "emoji-cp": "cp ./gitmojis.json ./node_modules/commitlint-plugin-gitmoji/lib/gitmojis.json",
+    "prettier": "prettier --parser=typescript --write ./src/**/*.ts",
     "vscode:prepublish": "yarn run compile",
     "precompile": "rm -rf out && node ./dir.js && cp -r templates/ out/templates/",
     "compile": "tsc --build -p ./",
@@ -36,7 +40,25 @@
     "lint": "eslint src --ext ts",
     "start": "node ./out/extension.js"
   },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "yarn prettier"
+    ]
+  },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/core": "^13.1.0",
     "@types/glob": "^7.1.3",
     "@types/js-yaml": "^4.0.2",
     "@types/lodash": "^4.14.172",
@@ -45,8 +67,17 @@
     "@types/vscode": "^1.59.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "auto-changelog": "^2.3.0",
+    "commitlint-config-cz": "^0.13.2",
+    "commitlint-config-gitmoji": "^2.2.5",
+    "cz-customizable": "^6.3.0",
     "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "glob": "^7.1.7",
+    "husky": "4.3.7",
+    "lint-staged": "10.5.2",
+    "prettier": "^2.3.2",
     "typescript": "^4.3.2"
   },
   "dependencies": {

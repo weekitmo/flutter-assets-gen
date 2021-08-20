@@ -1,12 +1,12 @@
 ## 如何使用
 
 
-- 1.在项目pubspec.yaml下添加：
+- 1. 在项目pubspec.yaml下添加：
 
 ```yaml
 flutter_assets:
-  assets_path: assets/images/
-  output_path: lib/common/assets/
+  assets_path: assets/
+  output_path: lib/constants/
   filename: assets.dart
 ```
 
@@ -17,11 +17,11 @@ class Assets {
   Assets._();
   
   /// Assets for loginLogo
-  /// login/2x/logo, login/3x/logo, login/logo
+  /// assets/images/login/logo.png
   static const String loginLogo = "assets/images/login/logo.png";
 
   /// Assets for tabHome
-  /// tab/2x/home, tab/3x/home, tab/home
+  /// assets/images/tab/home.png
   static const String tabHome = "assets/images/tab/home.png";
 }
 ```
