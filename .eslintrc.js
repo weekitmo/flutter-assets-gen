@@ -28,5 +28,6 @@ module.exports = {
   },
   env: {
     es6: true
-  }
+  },
+  ignorePatterns: ["out", "dist", "**/*.d.ts", "prettier.config.js", "dir.js"]
 }

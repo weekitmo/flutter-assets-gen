@@ -8,5 +8,5 @@ module.exports = {
   jsxBracketSameLine: true,
   singleQuote: false,
   trailingComma: "none",
-  htmlWhitespaceSensitivity: "ignore",
-};
+  htmlWhitespaceSensitivity: "ignore"
+}

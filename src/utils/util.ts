@@ -1,37 +1,37 @@
-import * as fs from "fs";
-import * as path from "path";
-import * as vscode from "vscode";
-import { exec } from "child_process";
-import { FLUTTER_PUBSPEC, YamlObject } from "./contants";
-import { trimEnd } from "lodash";
-import * as yaml from "js-yaml";
+import * as fs from "fs"
+import * as path from "path"
+import * as vscode from "vscode"
+import { exec } from "child_process"
+import { FLUTTER_PUBSPEC, YamlObject } from "./contants"
+import { trimEnd } from "lodash"
+import * as yaml from "js-yaml"
 
 export const util = {
   getWorkspace() {
-    const folders = vscode.workspace.workspaceFolders ?? [];
-    const rootPath = folders[0]?.uri?.path ?? ``;
-    return rootPath;
+    const folders = vscode.workspace.workspaceFolders ?? []
+    const rootPath = folders[0]?.uri?.path ?? ``
+    return rootPath
   },
   /**
    * 将一个单词首字母大写并返回
    */
   upperFirstLetter: (word: string) => {
-    return (word || "").replace(/^\w/, (m) => m.toUpperCase());
+    return (word || "").replace(/^\w/, m => m.toUpperCase())
   },
   /**
    * 将一个单词首字母转小写并返回
    */
   lowerFirstLeter: (word: string) => {
-    return (word || "").replace(/^\w/, (m) => m.toLowerCase());
+    return (word || "").replace(/^\w/, m => m.toLowerCase())
   },
 
   /**
    * 简单的检测版本大小
    */
   checkVersion(version1: string, version2: string) {
-    const tversion1 = parseInt(version1.replace(/\./g, ""));
-    const tversion2 = parseInt(version2.replace(/\./g, ""));
-    return tversion1 > tversion2;
+    const tversion1 = parseInt(version1.replace(/\./g, ""))
+    const tversion2 = parseInt(version2.replace(/\./g, ""))
+    return tversion1 > tversion2
   },
 
   /**
@@ -43,37 +43,37 @@ export const util = {
   getExtensionFileVscodeResource(context: any, relativePath: string) {
     const diskPath = vscode.Uri.file(
       path.join(context.extensionPath, relativePath)
-    );
-    return diskPath.with({ scheme: "vscode-resource" }).toString();
-  },
-};
+    )
+    return diskPath.with({ scheme: "vscode-resource" }).toString()
+  }
+}
 
 export function loadConf() {
   const doc = yaml.load(
     fs.readFileSync(path.join(process.cwd(), FLUTTER_PUBSPEC), "utf-8")
-  ) as YamlObject;
+  ) as YamlObject
 
-  console.log(doc);
-  let filename = "assets.dart";
+  console.log(doc)
+  let filename = "assets.dart"
   if (!doc || !doc.flutter_assets) {
-    console.warn("not found assets_config in pubspec.yaml file");
+    console.warn("not found assets_config in pubspec.yaml file")
     return {
       assets_path: [],
       output_path: ``,
       pubspec: FLUTTER_PUBSPEC,
-      filename,
-    };
+      filename
+    }
   }
 
-  const config = doc.flutter_assets;
-  const assets_path: string[] | string | undefined = config.assets_path;
-  const output_path = config.output_path || "lib/assets";
-  filename = config.filename || "assets.dart";
+  const config = doc.flutter_assets
+  const assets_path: string[] | string | undefined = config.assets_path
+  const output_path = config.output_path || "lib/assets"
+  filename = config.filename || "assets.dart"
 
   if (!assets_path) {
     console.log(
       "assets_config.json file must specify `assets` folder as assets"
-    );
+    )
   }
 
   return {
@@ -82,6 +82,6 @@ export function loadConf() {
       : [trimEnd(assets_path, "/")],
     output_path: trimEnd(output_path, "/"),
     pubspec: FLUTTER_PUBSPEC,
-    filename,
-  };
+    filename
+  }
 }

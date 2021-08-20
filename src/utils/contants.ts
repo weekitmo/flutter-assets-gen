@@ -1,5 +1,5 @@
-export const FLUTTER_PUBSPEC = `pubspec.yaml`;
+export const FLUTTER_PUBSPEC = `pubspec.yaml`
 
 export type YamlObject = {
-  [props: string]: any;
-} | null;
+  [props: string]: any
+} | null
