@@ -1,7 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
 import * as vscode from "vscode"
-import { exec } from "child_process"
 import { FLUTTER_PUBSPEC, YamlObject } from "./contants"
 import { trimEnd } from "lodash"
 import * as yaml from "js-yaml"
@@ -53,7 +52,6 @@ export function loadConf() {
     fs.readFileSync(path.join(process.cwd(), FLUTTER_PUBSPEC), "utf-8")
   ) as YamlObject
 
-  console.log(doc)
   let filename = "assets.dart"
   if (!doc || !doc.flutter_assets) {
     console.warn("not found assets_config in pubspec.yaml file")

@@ -1,12 +1,13 @@
-import { FileChokidar } from "./watch"
+import { Watcher } from "./watch"
 import { validateFlutterProject } from "./utils/check"
-import { loadConf } from "./utils/util"
 
 export class Walk {
   root: string
-  watcher: FileChokidar | undefined
-  constructor(root: string) {
+  commandType: string
+  watcher: Watcher | undefined
+  constructor(root: string, commandType: string) {
     this.root = root
+    this.commandType = commandType
   }
 
   stop() {
@@ -21,11 +22,9 @@ export class Walk {
     const isValid = validateFlutterProject()
 
     if (!isValid) return
-    /// 提取配置文件
-    const config = loadConf()
-    console.log(config)
+
     // 开始监听文件变化
-    this.watcher = FileChokidar.getInstance(config)
+    this.watcher = Watcher.getInstance(this.root, this.commandType)
     this.watcher.start()
   }
 }

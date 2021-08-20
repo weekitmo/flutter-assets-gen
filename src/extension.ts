@@ -2,7 +2,7 @@ import * as vscode from "vscode"
 import { util } from "./utils/util"
 import { Find } from "./find"
 import { Walk } from "./walk"
-import { FileChokidar } from "./watch"
+import { Watcher } from "./watch"
 
 const pluginName = `flutter-assets-gen`
 const commands = {
@@ -22,8 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
     const rootPath = util.getWorkspace()
 
     try {
-      new Walk(rootPath).start()
-      vscode.window.showInformationMessage(`start watch successful!`)
+      new Walk(rootPath, commands.watch).start()
     } catch (error) {
       vscode.window.showErrorMessage(`[${commands.generate}] ${error}`)
     }
@@ -46,5 +45,5 @@ export function activate(context: vscode.ExtensionContext) {
 // this method is called when your extension is deactivated
 export function deactivate() {
   console.log(`deactivate`)
-  FileChokidar.clear()
+  Watcher.clear()
 }

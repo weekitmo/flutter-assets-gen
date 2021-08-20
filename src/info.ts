@@ -23,7 +23,6 @@ export class CtorAssetFileInfo {
       console.error(`file path is invalid`)
       return null
     }
-    console.log(`root:`, this.rootPath)
     /// {  root: "", dir: "assets/images", base: "xx.png", ext: ".png", name: "xx" }
     const info = path.parse(this.filePath)
     // path.sep on win is \ & darwin or linux is /

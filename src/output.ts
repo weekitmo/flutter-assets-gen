@@ -12,7 +12,6 @@ const templateName = `asset.txt`
 export function getTemplate() {
   if (CacheTemplate.temp) return CacheTemplate.temp
   const templatePath = path.join(__dirname, `../templates/${templateName}`)
-  console.log(templatePath)
 
   const templateStr = fs.readFileSync(templatePath, { encoding: "utf8" })
 
@@ -22,7 +21,7 @@ export function getTemplate() {
 export function outputCode(
   list: ParserInfo[],
   dist: string,
-  filename: string = "assets.dart"
+  filename = "assets.dart"
 ) {
   const content = list
     .map((item: ParserInfo) => new VNode(item).gen())
