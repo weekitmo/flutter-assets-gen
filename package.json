@@ -1,6 +1,6 @@
 {
-  "name": "flutter-assets-gen",
-  "displayName": "flutter-assets-gen",
+  "name": "flutter-assets-gen2",
+  "displayName": "Flutter Assets Gen",
   "description": "A plugin to generate flutter assets class file by pubspec.yaml",
   "author": {
     "name": "weekit",
@@ -9,11 +9,16 @@
   "icon": "images/icon.png",
   "keywords": [
     "generate",
+    "flutter assets",
     "flutter",
     "vscode",
     "assets",
     "watch"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/weekitmo/flutter-assets-gen.git"
+  },
   "publisher": "weekit",
   "version": "0.0.5",
   "engines": {
