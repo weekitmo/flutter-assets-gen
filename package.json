@@ -6,7 +6,9 @@
     "name": "weekit",
     "email": "121727393@qq.com"
   },
-  "version": "0.0.2",
+  "icon": "images/icon.png",
+  "publisher": "weekit",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.59.0"
   },
@@ -38,7 +40,7 @@
     "prettier": "prettier --parser=typescript --write ./src/**/*.ts",
     "vscode:prepublish": "yarn run compile",
     "precompile": "rm -rf out && node ./dir.js && cp -r templates/ out/templates/",
-    "compile": "tsc --build -p ./",
+    "compile": "tsc --build",
     "prewatch": "rm -rf out && node ./dir.js && cp -r templates/ out/templates/",
     "watch": "tsc -w -p ./",
     "lint": "eslint src --ext ts",
