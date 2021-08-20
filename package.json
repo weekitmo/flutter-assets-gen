@@ -2,6 +2,10 @@
   "name": "flutter-assets-gen",
   "displayName": "flutter-assets-gen",
   "description": "A plugin to generate flutter assets class file by pubspec.yaml",
+  "author": {
+    "name": "weekit",
+    "email": "121727393@qq.com"
+  },
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.59.0"
