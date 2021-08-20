@@ -7,6 +7,13 @@
     "email": "121727393@qq.com"
   },
   "icon": "images/icon.png",
+  "keywords": [
+    "generate",
+    "flutter",
+    "vscode",
+    "assets",
+    "watch"
+  ],
   "publisher": "weekit",
   "version": "0.0.3",
   "engines": {
@@ -16,7 +23,8 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "onCommand:flutter-assets-gen.watch",
+    "onCommand:flutter-assets-gen.generate"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -40,7 +48,7 @@
     "prettier": "prettier --parser=typescript --write ./src/**/*.ts",
     "vscode:prepublish": "yarn run compile",
     "precompile": "rm -rf out && node ./dir.js && cp -r templates/ out/templates/",
-    "compile": "tsc --build",
+    "compile": "tsc -p ./",
     "prewatch": "rm -rf out && node ./dir.js && cp -r templates/ out/templates/",
     "watch": "tsc -w -p ./",
     "lint": "eslint src --ext ts",
@@ -81,15 +89,15 @@
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "glob": "^7.1.7",
     "husky": "4.3.7",
     "lint-staged": "10.5.2",
-    "lodash": "^4.17.21",
     "prettier": "^2.3.2",
     "typescript": "^4.3.2"
   },
   "dependencies": {
     "chokidar": "^3.5.2",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "glob": "^7.1.7"
   }
 }
