@@ -1,11 +1,15 @@
-## 命令
-- F1 > search flutter asset
+## 命令 (Provide commands)
+- F1 > Search flutter assets
+  - `Flutter Assets: Watch`
+  - `Flutter Assets: Stop Watch`
+  - `Flutter Assets: Generate`
+  
 ![screenshot](./images/screenshot.png)
 
-## 如何使用
+## 如何使用 (How to use)
 
 
-- 1. 在项目pubspec.yaml下添加：
+- step 1. 在项目pubspec.yaml下添加：
 
 ```yaml
 flutter_assets:
@@ -14,7 +18,7 @@ flutter_assets:
   filename: assets.dart
 ```
 
-- 2. 生成文件内容
+- step 2. 生成文件内容
 
 ```dart
 class Assets {

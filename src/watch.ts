@@ -56,7 +56,7 @@ export class Watcher {
 
     this._instance.on("ready", () => {
       // if need to trigger something
-      vscode.window.showInformationMessage(`start watch successful!`)
+      vscode.window.showInformationMessage(`Start watch successful!`)
     })
   }
 
@@ -69,9 +69,6 @@ export class Watcher {
       // 防抖处理只触发一次即可，重新扫描
       try {
         new Find(this.rootPath).start()
-        vscode.window.showInformationMessage(
-          `flutter asserts rebuild successful!`
-        )
       } catch (error) {
         vscode.window.showErrorMessage(`[${this.commandType}] ${error}`)
       }

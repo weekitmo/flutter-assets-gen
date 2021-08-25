@@ -7,6 +7,7 @@ import { Watcher } from "./watch"
 const pluginName = `flutter-assets-gen`
 const commands = {
   watch: `${pluginName}.watch`,
+  stopWatch: `${pluginName}.stopWatch`,
   generate: `${pluginName}.generate`
 }
 
@@ -24,7 +25,15 @@ export function activate(context: vscode.ExtensionContext) {
     try {
       new Walk(rootPath, commands.watch).start()
     } catch (error) {
-      vscode.window.showErrorMessage(`[${commands.generate}] ${error}`)
+      vscode.window.showErrorMessage(`[${commands.watch}] ${error}`)
+    }
+  })
+  const stopWatch = vscode.commands.registerCommand(commands.stopWatch, () => {
+    try {
+      Watcher.clear()
+      vscode.window.showInformationMessage(`Stop watch`)
+    } catch (error) {
+      vscode.window.showErrorMessage(`[${commands.stopWatch}] ${error}`)
     }
   })
 
@@ -32,13 +41,13 @@ export function activate(context: vscode.ExtensionContext) {
     const rootPath = util.getWorkspace()
     try {
       new Find(rootPath).start()
-      vscode.window.showInformationMessage(`success!`)
     } catch (error) {
       vscode.window.showErrorMessage(`[${commands.generate}] ${error}`)
     }
   })
 
   context.subscriptions.push(disposable)
+  context.subscriptions.push(stopWatch)
   context.subscriptions.push(genarate)
 }
 

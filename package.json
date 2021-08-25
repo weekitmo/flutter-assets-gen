@@ -28,6 +28,7 @@
     "Other"
   ],
   "activationEvents": [
+    "*",
     "onCommand:flutter-assets-gen.watch",
     "onCommand:flutter-assets-gen.generate"
   ],
@@ -37,6 +38,11 @@
       {
         "command": "flutter-assets-gen.watch",
         "title": "Watch",
+        "category": "Flutter Assets"
+      },
+      {
+        "command": "flutter-assets-gen.stopWatch",
+        "title": "Stop Watch",
         "category": "Flutter Assets"
       },
       {

@@ -1,5 +1,5 @@
 import * as fs from "fs"
-import * as path from "path"
+import path from "./path"
 import * as vscode from "vscode"
 import { FLUTTER_PUBSPEC, YamlObject } from "./contants"
 import { trimEnd } from "lodash"
@@ -8,8 +8,13 @@ import * as yaml from "js-yaml"
 export const util = {
   getWorkspace() {
     const folders = vscode.workspace.workspaceFolders ?? []
-    const rootPath = folders[0]?.uri?.path ?? ``
-    return rootPath
+    const rootPath = path.normalize(folders[0]?.uri?.path ?? ``)
+    // fix win32 path bug
+    if (process.platform === "win32" && rootPath.startsWith(path.sep)) {
+      return rootPath.slice(1)
+    } else {
+      return rootPath
+    }
   },
   /**
    * 将一个单词首字母大写并返回
@@ -48,13 +53,19 @@ export const util = {
 }
 
 export function loadConf() {
+  // process.cwd must call process.chdir & set workspace
   const doc = yaml.load(
-    fs.readFileSync(path.join(process.cwd(), FLUTTER_PUBSPEC), "utf-8")
+    fs.readFileSync(
+      path.normalize(path.join(process.cwd(), FLUTTER_PUBSPEC)),
+      "utf-8"
+    )
   ) as YamlObject
 
   let filename = "assets.dart"
   if (!doc || !doc.flutter_assets) {
-    console.warn("not found assets_config in pubspec.yaml file")
+    vscode.window.showInformationMessage(
+      "Not found assets_config in pubspec.yaml file"
+    )
     return {
       assets_path: [],
       output_path: ``,

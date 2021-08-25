@@ -1,7 +1,8 @@
-import * as path from "path"
+import path from "./utils/path"
+import * as PATH from "path"
 import { util } from "./utils/util"
-
-export interface ParserInfo extends path.ParsedPath {
+import * as vscode from "vscode"
+export interface ParserInfo extends PATH.ParsedPath {
   // 相对路径
   identifier: string
   tag: string
@@ -11,10 +12,11 @@ export class CtorAssetFileInfo {
   filePath: string
   rootPath: string
   constructor(filePath: string, rootPath: string) {
-    this.filePath = filePath
-    if (rootPath.endsWith(`/`)) this.rootPath = rootPath
+    this.filePath = path.normalize(filePath)
+    rootPath = path.normalize(rootPath)
+    if (rootPath.endsWith(path.sep)) this.rootPath = rootPath
     else if (rootPath) {
-      this.rootPath = `${rootPath}/`
+      this.rootPath = `${rootPath}${path.sep}`
     } else this.rootPath = ``
   }
 
@@ -25,8 +27,10 @@ export class CtorAssetFileInfo {
     }
     /// {  root: "", dir: "assets/images", base: "xx.png", ext: ".png", name: "xx" }
     const info = path.parse(this.filePath)
+
     // path.sep on win is \ & darwin or linux is /
     const relationPath = info.dir.replace(this.rootPath, ``)
+
     const identifier =
       relationPath
         .split(path.sep)
@@ -39,7 +43,7 @@ export class CtorAssetFileInfo {
     const result: ParserInfo = {
       ...info,
       identifier: identifier,
-      tag: `${relationPath}${path.sep}${info.base}`
+      tag: `${relationPath.replace(/[\\]/g, "/")}/${info.base}`
     }
 
     return result
