@@ -1,7 +1,6 @@
 import * as fs from "fs"
 import { FLUTTER_PUBSPEC } from "./contants"
 import * as vscode from "vscode"
-import path from "./path"
 
 export function validateFlutterProject() {
   const yamlPath = `${process.cwd()}/${FLUTTER_PUBSPEC}`

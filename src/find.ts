@@ -49,8 +49,6 @@ export class Find {
 
     normalizeFile = sortAssets(normalizeFile)
 
-    console.log(normalizeFile)
-
     outputCode(normalizeFile, conf.output_path, conf.filename)
   }
 }

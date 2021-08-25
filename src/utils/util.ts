@@ -80,8 +80,8 @@ export function loadConf() {
   filename = config.filename || "assets.dart"
 
   if (!assets_path) {
-    console.log(
-      "assets_config.json file must specify `assets` folder as assets"
+    vscode.window.showWarningMessage(
+      "pubspec.yaml should provide flutter_assets.assets_path field"
     )
   }
 

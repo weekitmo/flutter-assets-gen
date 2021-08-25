@@ -22,7 +22,7 @@ export class CtorAssetFileInfo {
 
   parserPath() {
     if (!this.filePath) {
-      console.error(`file path is invalid`)
+      vscode.window.showErrorMessage(`File path is invalid`)
       return null
     }
     /// {  root: "", dir: "assets/images", base: "xx.png", ext: ".png", name: "xx" }

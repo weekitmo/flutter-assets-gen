@@ -33,4 +33,14 @@ class Assets {
   static const String tabHome = "assets/images/tab/home.png";
 }
 ```
+- step 3. 引入
+
+```dart
+import 'constants/assets.dart';
+/// example1:
+Image.asset(Assets.imagesAvatar, height: 30, width: 30),
+/// example2:
+Image(image: AssetImage(Assets.imagesAvatar,), height: 30, width: 30),
+```
+
 
