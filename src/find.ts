@@ -6,6 +6,7 @@ import path from "./utils/path"
 import { validateFlutterProject } from "./utils/check"
 import { loadConf } from "./utils/util"
 import * as vscode from "vscode"
+import { pluginName } from "./utils/constants"
 
 export class Find {
   rootPath: string
@@ -26,6 +27,7 @@ export class Find {
       )
       return
     }
+    console.log(`${pluginName}'s config: `, conf)
 
     let normalizeFile: ParserInfo[] = []
     conf.assets_path
@@ -39,7 +41,11 @@ export class Find {
             return ext !== "" && ext !== `.dart`
           })
           .forEach(filePath => {
-            const info = new CtorAssetFileInfo(filePath, this.rootPath)
+            const info = new CtorAssetFileInfo(
+              filePath,
+              this.rootPath,
+              conf.field_prefix
+            )
             const p = info.parserPath()
             if (p) {
               normalizeFile.push(p)

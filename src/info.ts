@@ -11,8 +11,10 @@ export interface ParserInfo extends PATH.ParsedPath {
 export class CtorAssetFileInfo {
   filePath: string
   rootPath: string
-  constructor(filePath: string, rootPath: string) {
+  prefix: string
+  constructor(filePath: string, rootPath: string, prefix: string) {
     this.filePath = path.normalize(filePath)
+    this.prefix = prefix
     rootPath = path.normalize(rootPath)
     if (rootPath.endsWith(path.sep)) this.rootPath = rootPath
     else if (rootPath) {
@@ -35,8 +37,12 @@ export class CtorAssetFileInfo {
       relationPath
         .split(path.sep)
         .map((item, i) => {
-          if (i === 0) return item
-          else return normalizeName(item)
+          if (i === 0) {
+            if (this.prefix !== null) return this.prefix
+            else return item
+          } else if (this.prefix === "") {
+            return util.lowerFirstLeter(normalizeName(item))
+          } else return normalizeName(item)
         })
         .join("") + normalizeName(info.name)
 

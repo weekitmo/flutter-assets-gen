@@ -18,19 +18,36 @@ flutter_assets:
   filename: assets.dart
 ```
 
+  - **field_prefix为可选字段，如果想去掉assets前缀，则提供一个空，默认为assets**
+  ```yaml
+  flutter_assets:
+    assets_path: assets/
+    output_path: lib/constants/
+    filename: assets.dart
+    field_prefix:
+  ```
+  - **修改prefix**
+  ```yaml
+  flutter_assets:
+    assets_path: assets/
+    output_path: lib/constants/
+    filename: assets.dart
+    field_prefix: resource
+  ```
+
 - step 2. 生成文件内容
 
 ```dart
 class Assets {
   Assets._();
-  
+
   /// Assets for loginLogo
   /// assets/images/login/logo.png
-  static const String loginLogo = "assets/images/login/logo.png";
+  static const String assetsImagesLoginLogo = "assets/images/login/logo.png";
 
   /// Assets for tabHome
   /// assets/images/tab/home.png
-  static const String tabHome = "assets/images/tab/home.png";
+  static const String assetsImagesTabHome = "assets/images/tab/home.png";
 }
 ```
 - step 3. 引入
@@ -38,9 +55,9 @@ class Assets {
 ```dart
 import 'constants/assets.dart';
 /// example1:
-Image.asset(Assets.imagesAvatar, height: 30, width: 30),
+Image.asset(Assets.assetsImagesLoginLogo, height: 30, width: 30),
 /// example2:
-Image(image: AssetImage(Assets.imagesAvatar,), height: 30, width: 30),
+Image(image: AssetImage(Assets.assetsImagesTabHome,), height: 30, width: 30),
 ```
 
 

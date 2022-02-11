@@ -52,7 +52,15 @@ export const util = {
   }
 }
 
-export function loadConf() {
+interface IConfig {
+  assets_path: Array<string>
+  output_path: string
+  pubspec: string
+  field_prefix: string
+  filename: string
+}
+
+export function loadConf(): IConfig {
   // process.cwd must call process.chdir & set workspace
   const doc = yaml.load(
     fs.readFileSync(
@@ -70,13 +78,23 @@ export function loadConf() {
       assets_path: [],
       output_path: ``,
       pubspec: FLUTTER_PUBSPEC,
-      filename
+      filename,
+      field_prefix: ""
     }
   }
 
   const config = doc.flutter_assets
   const assets_path: string[] | string | undefined = config.assets_path
   const output_path = config.output_path || "lib/assets"
+  // 前缀
+  let field_prefix = ""
+  // 没提供为undefined, 提供但是为空是null
+  if (config.field_prefix === null) {
+    field_prefix = ""
+  } else {
+    field_prefix = config.field_prefix ?? "assets"
+  }
+
   filename = config.filename || "assets.dart"
 
   if (!assets_path) {
@@ -91,6 +109,7 @@ export function loadConf() {
       : [trimEnd(assets_path, "/")],
     output_path: trimEnd(output_path, "/"),
     pubspec: FLUTTER_PUBSPEC,
+    field_prefix: field_prefix as string,
     filename
   }
 }

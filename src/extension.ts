@@ -3,8 +3,8 @@ import { util } from "./utils/util"
 import { Find } from "./find"
 import { Walk } from "./walk"
 import { Watcher } from "./watch"
+import { pluginName } from "./utils/constants"
 
-const pluginName = `flutter-assets-gen`
 const commands = {
   watch: `${pluginName}.watch`,
   stopWatch: `${pluginName}.stopWatch`,

@@ -20,7 +20,7 @@
     "url": "https://github.com/weekitmo/flutter-assets-gen.git"
   },
   "publisher": "weekit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.59.0"
   },
