@@ -37,11 +37,12 @@ export class CtorAssetFileInfo {
       relationPath
         .split(path.sep)
         .map((item, i) => {
+          console.log(`>>`, item, this.prefix)
           if (i === 0) {
             if (this.prefix !== null) return this.prefix
             else return item
           } else if (this.prefix === "") {
-            return util.lowerFirstLeter(normalizeName(item))
+            return i === 1 ? util.lowerFirstLeter(item) : normalizeName(item)
           } else return normalizeName(item)
         })
         .join("") + normalizeName(info.name)
