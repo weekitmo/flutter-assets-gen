@@ -27,7 +27,6 @@ export class Find {
       )
       return
     }
-    console.log(`${pluginName}'s config: `, conf)
 
     let normalizeFile: ParserInfo[] = []
     conf.assets_path

@@ -37,7 +37,6 @@ export class CtorAssetFileInfo {
       relationPath
         .split(path.sep)
         .map((item, i) => {
-          console.log(`>>`, item, this.prefix)
           if (i === 0) {
             if (this.prefix !== null) return this.prefix
             else return item

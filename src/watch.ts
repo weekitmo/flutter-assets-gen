@@ -35,7 +35,6 @@ export class Watcher {
   }
 
   stop() {
-    console.log(`stop`)
     if (this._instance) {
       this._instance.removeAllListeners()
       this._instance.unwatch(this.config.assets_path)
