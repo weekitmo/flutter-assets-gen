@@ -20,7 +20,7 @@
     "url": "https://github.com/weekitmo/flutter-assets-gen.git"
   },
   "publisher": "weekit",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "engines": {
     "vscode": "^1.59.0"
   },
@@ -28,7 +28,6 @@
     "Other"
   ],
   "activationEvents": [
-    "*",
     "onCommand:flutter-assets-gen.watch",
     "onCommand:flutter-assets-gen.generate"
   ],
