@@ -3,19 +3,24 @@ import path from "./utils/path"
 import type { ParserInfo } from "./info"
 import { VNode } from "./vnode"
 import * as vscode from "vscode"
-class templateCache {
-  static temp = ``
+import { loadConf } from "./utils/util"
+
+const createTemplateBasicStr = () => `
+class Assets {
+  Assets._();
+  __CODE_TEMPLATE_CONTENTS_REPLACEMENT__
 }
 
-const templateName = `asset.txt`
-
+`
 export function getTemplate() {
-  if (templateCache.temp) return templateCache.temp
-  const templatePath = path.join(__dirname, `../templates/${templateName}`)
+  const conf = loadConf()
+  let result = createTemplateBasicStr().replace(/^[\n\r]/, "")
 
-  const templateStr = fs.readFileSync(templatePath, { encoding: "utf8" })
+  if (conf.classname) {
+    result = result.replace(/Assets/gi, conf.classname)
+  }
 
-  return templateStr
+  return result
 }
 
 export function outputCode(

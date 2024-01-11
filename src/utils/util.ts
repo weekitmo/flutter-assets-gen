@@ -58,6 +58,7 @@ interface IConfig {
   pubspec: string
   field_prefix: string
   filename: string
+  classname: string
 }
 
 export function loadConf(): IConfig {
@@ -70,6 +71,7 @@ export function loadConf(): IConfig {
   ) as YamlObject
 
   let filename = "assets.dart"
+  let classname = "Assets"
   if (!doc || !doc.flutter_assets) {
     vscode.window.showInformationMessage(
       "Not found assets_config in pubspec.yaml file"
@@ -79,7 +81,8 @@ export function loadConf(): IConfig {
       output_path: ``,
       pubspec: FLUTTER_PUBSPEC,
       filename,
-      field_prefix: ""
+      field_prefix: "",
+      classname
     }
   }
 
@@ -96,7 +99,7 @@ export function loadConf(): IConfig {
   }
 
   filename = config.filename || "assets.dart"
-
+  classname = config.classname || "Assets"
   if (!assets_path) {
     vscode.window.showWarningMessage(
       "pubspec.yaml should provide flutter_assets.assets_path field"
@@ -110,6 +113,7 @@ export function loadConf(): IConfig {
     output_path: trimEnd(output_path, "/"),
     pubspec: FLUTTER_PUBSPEC,
     field_prefix: field_prefix as string,
-    filename
+    filename,
+    classname
   }
 }

@@ -50,6 +50,7 @@ class Assets {
   static const String assetsImagesTabHome = "assets/images/tab/home.png";
 }
 ```
+
 - step 3. 引入 (introduce)
 
 ```dart
@@ -60,4 +61,28 @@ Image.asset(Assets.assetsImagesLoginLogo, height: 30, width: 30),
 Image(image: AssetImage(Assets.assetsImagesTabHome,), height: 30, width: 30),
 ```
 
+## 修改类名 (Modify class name)
 
+```yaml
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/constants/
+  filename: assets.dart
+  field_prefix:
+  class_name: R
+```
+生成内容 (Generate content)
+
+```dart
+class R {
+  R._();
+
+  /// Assets for loginLogo
+  /// assets/images/login/logo.png
+  static const String assetsImagesLoginLogo = "assets/images/login/logo.png";
+
+  /// Assets for tabHome
+  /// assets/images/tab/home.png
+  static const String assetsImagesTabHome = "assets/images/tab/home.png";
+}
+```
