@@ -69,7 +69,7 @@ flutter_assets:
   output_path: lib/constants/
   filename: assets.dart
   field_prefix:
-  class_name: R
+  classname: R
 ```
 生成内容 (Generate content)
 
